@@ -1,5 +1,5 @@
 [submodule "word-embeddings-benchmarks"]
-	path = word-embeddings-benchmarks
+	path = word_embeddings_benchmarks
 	url = https://github.com/kage08/word-embeddings-benchmarks.git
 [submodule "retrofitting"]
 	path = retrofitting
