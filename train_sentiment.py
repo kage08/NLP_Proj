@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 
 DICT_PATH = 'data/glove.pkl'
 TRAIN_PATH = 'data/twitter-sentiment-analysis2/train.pkl'
@@ -14,7 +15,7 @@ with open(DICT_PATH,'rb') as f:
 
 with open(TRAIN_PATH,'rb') as f:
     train_data = pickle.load(f)
-
+print('Getting embeddings...')
 train_embeds, test_embeds = [],[]
 train_idx, test_idx = [],[]
 for i in range(len(train_data)):
@@ -30,19 +31,25 @@ for i in range(len(train_data)):
         train_embeds.append(e)
 
 train_labels = train_data[train_idx,1]
+train_embeds = np.array(train_embeds)
 
-
-
+print('Preparing test and train...')
 # Permute the dataset
 perm = rg.permutation(len(train_embeds))
 train_embeds = train_embeds[perm]
-train_labels = train_labels[perm]
+train_labels = train_labels[perm].astype(int)
 
 #Split Train/test
 FRACTION = 0.8
 t = int(len(train_embeds)*FRACTION)
-train = np.array([train_embeds[:t], train_labels[:t]])
-test = np.array([train_embeds[t:], train_labels[t:]])
+train = [train_embeds[:t], train_labels[:t]]
+test = [train_embeds[t:], train_labels[t:]]
 
+# Lets train a model
+print('Training model...')
+model = LogisticRegression(verbose=1)
+model.fit(train[0], train[1])
+pred = model.predict(test[0])
 
+print(classification_report(test[1], pred))
 
