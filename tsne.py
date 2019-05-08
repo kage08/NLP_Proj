@@ -5,18 +5,17 @@ import numpy as np
 
 rg = np.random.RandomState(10)
 
-DICT = 'data/embedding_300_3_hop_sprinkling_twice.pkl'
+DICT = 'data/glove_3_jcn.pkl'
 with open(DICT,'rb') as fl:
     embed = pickle.load(fl)
 words = []
 with open('data/cluster_words.txt','r') as fl:
     words = fl.readlines()
-
+embed = embed[0].vocab
 words = [w.strip() for w in words]
 
 words = [w for w in words if w in embed.keys()]
 
-words = rg.choice(words, 100)
 
 ems = [embed[w] for w in words]
 
