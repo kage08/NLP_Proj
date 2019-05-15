@@ -3,7 +3,7 @@ import pickle
 with open('data/glove.pkl','rb') as fl:
     glove_dict = pickle.load(fl)
 
-with open('data/fullgraph.pk','rb') as fl:
+with open('data/wordnet_all.pkl','rb') as fl:
     graph = pickle.load(fl)
 
 import networkx as nx
@@ -22,10 +22,10 @@ print('Len:', len(s))
 input('Ichso')
 ct=0
 for w in set(glove_dict.keys()).intersection(set(graph.nodes)):
-    ds[w] = get_n_hop(graph, w, 4)
+    ds[w] = get_n_hop(graph, w, 3)
     print(ct)
     ct = ct+1
     
 
-with open('data/glove_neigh.pkl','wb') as fl:
+with open('data/glove_wn.pkl','wb') as fl:
     pickle.dump(ds, fl)

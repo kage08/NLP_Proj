@@ -13,11 +13,11 @@ warnings.simplefilter(action='ignore', category=RuntimeWarning)
 
 methods = ['simple','path', 'lch','jcn','lin', 'wup']
 hops = [1,2,3]
-res_file = open('data/results.csv','a')
+res_file = open('data/results_wn.csv','a')
 
 
 emb = pickle.load(open('data/glove.pkl','rb'))
-ds_ = pickle.load(open('data/glove_neigh.pkl','rb'))
+ds_ = pickle.load(open('data/glove_wn.pkl','rb'))
 
 for m in methods:
     for h in hops:
