@@ -1,6 +1,3 @@
 [submodule "word-embeddings-benchmarks"]
 	path = word-embeddings-benchmarks
 	url = https://github.com/kage08/word-embeddings-benchmarks.git
-[submodule "retrofitting"]
-	path = retrofitting
-	url = https://github.com/kage08/retrofitting.git
