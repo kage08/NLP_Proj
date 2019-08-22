@@ -22,7 +22,7 @@ print('Len:', len(s))
 input('Ichso')
 ct=0
 for w in set(glove_dict.keys()).intersection(set(graph.nodes)):
-    ds[w] = get_n_hop(graph, w, 3)
+    ds[w] = get_n_hop(graph, w, 2)
     print(ct)
     ct = ct+1
     
